@@ -1,14 +1,13 @@
 import * as React from 'react';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
-// This is causing the page to crash. Need to debug before adding back to the app.jsx. Gettting 500 error when adding back
-export default function BasicDateCalendar() {
+export default function Calendar() {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DateCalendar />
+      <h1>Calendar</h1>
+      <DatePicker />
     </LocalizationProvider>
   );
 }
-
