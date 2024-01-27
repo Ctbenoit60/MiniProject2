@@ -21,7 +21,7 @@ export default function MultiActionAreaCard() {
         <CardMedia
           component="img"
           height="140"
-          image="PersonalizeCal/src/assets/AnimCross.webp"
+          image="../assets/AnimalCrossing.jpeg"
           alt="Animal Crossing"
         />
         <CardContent>
