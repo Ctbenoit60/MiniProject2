@@ -1,4 +1,4 @@
-import * as React from 'react';
+
 // import Card from '@mui/material/Card';
 // import CardContent from '@mui/material/CardContent';
 // import CardMedia from '@mui/material/CardMedia';
@@ -42,29 +42,59 @@ import { useNavigate } from "react-router-dom";
 // }
 
 
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { Card, Button } from 'react-bootstrap';
 
-function BasicExample() {
+function UnsplashCards() {
+  const [images, setImages] = useState([]);
+
+  useEffect(() => {
+    axios.get('https://api.unsplash.com/photos/random', {
+      params: {
+        count: 10,
+        client_id: 'Jmihv2xAFaTuP18WWUFGPz0qLBcIPRBb0WCX2WFzJ4M'
+      }
+    })
+    .then(response => {
+      setImages(response.data);
+    })
+    .catch(error => {
+      console.error('Error fetching images:', error);
+    });
+  }, []);
+
   let navigate = useNavigate(); 
-  const routeChange = () =>{ 
-    let path = `/Calendar`; 
-    navigate(path);
-  }
+    const routeChange = () =>{ 
+      let path = `/Calendar`; 
+      navigate(path);
+    }
 
   return (
-    <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src="../assets/AnimalCrossing.png" />
-      <Card.Body>
-        <Card.Title>Card Title</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
-        <Button variant="primary" size="small" color="primary" onClick={routeChange} >Go somewhere</Button>
-      </Card.Body>
-    </Card>
+    <div className="container">
+      <h1 className="text-center my-5">Theme Cards</h1>
+      <Button size="small" color="primary" onClick={routeChange}>
+         Go back
+       </Button>
+       <br />
+      <div className="row">
+        {images.map(image => (
+          <div key={image.id} className="col-md-4 mb-4">
+            <Card>
+              <Card.Img variant="top" src={image.urls.small} />
+              <Card.Body>
+                <Card.Title>{image.alt_description}</Card.Title>
+                <Card.Text>
+                  Photo by {image.user.name}
+                </Card.Text>
+                <Button variant="primary" href={image.links.html} target="_blank">View on Unsplash</Button>
+              </Card.Body>
+            </Card>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }
 
-export default BasicExample;
+export default UnsplashCards;
