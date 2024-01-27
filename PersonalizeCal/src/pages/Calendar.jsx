@@ -35,9 +35,9 @@ export default function Calendar() {
   return (
     <div style={{ backgroundImage: `url(${backgroundImageUrl})`, backgroundSize: 'cover', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <h1>Calendar</h1>
+        <h1 style={{ color: 'white' }}>Calendar</h1>
         <MyCalendar />
-        <Button size="small" color="primary" onClick={routeChange}> Choose Theme </Button>
+        <Button size="small" style={{ color: 'white' }} onClick={routeChange}> Choose Theme </Button>
       </LocalizationProvider>
     </div>
   );
