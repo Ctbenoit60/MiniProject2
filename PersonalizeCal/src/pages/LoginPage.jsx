@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import SignIn from "../components/LoginSignUp";
+import { UserProvider } from './context/UserContext'
 
 
 function LoginPage() {
